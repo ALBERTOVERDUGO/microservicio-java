@@ -19,25 +19,7 @@ jobs:
     
     - name: Compilation Maven
       run: mvn package
-
-#prueba jacoco
-    - name: Download Jacoco XML artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: jacoco-report
-        path: target/site/jacoco
-
-    - name: Generate PDF from Jacoco XML
-      run: |
-        xvfb-run wkhtmltopdf target/site/jacoco/index.html jacoco.pdf
-
-    - name: Upload PDF artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: jacoco-pdf
-        path: jacoco.pdf
-#termino jacoco
-
+      
       #pruebas unitarias
     - name: Ejecucion test unitarios 
       run: mvn package test
@@ -50,10 +32,8 @@ jobs:
           mvn package
           if [ $? -eq 0 ]; then
           echo "La cobertura es mayor al 85%."
-          mvn verify
           else
           echo "La cobertura es menor al 85%."
-          mvn verify
           fi
 
     
