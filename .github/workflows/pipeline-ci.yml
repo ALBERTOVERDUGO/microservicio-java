@@ -32,8 +32,10 @@ jobs:
           mvn package
           if [ $? -eq 0 ]; then
           echo "La cobertura es mayor al 85%."
+          mvn verify
           else
           echo "La cobertura es menor al 85%."
+          mvn verify
           fi
 
     
