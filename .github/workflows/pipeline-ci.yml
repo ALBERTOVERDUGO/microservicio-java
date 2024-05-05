@@ -24,10 +24,10 @@ jobs:
     - name: Ejecucion test unitarios 
       run: mvn package test
 
-    - name: Ejecucion test unitarios
+    - name: Ejecucion test unitarios jacoco
       run: mvn package jacoco:report
 
-    - name: Verificar Cobertura
+    - name: Verificar Cobertura con jacoco
       run: |
           COVERAGE=$(sed -n 's/.*<line.*mi.*coverage.*="\([^"]*\)".*/\1/p' target/site/jacoco/index.html)
           if (( $(echo "$COVERAGE > 0.85" | bc -l) )); then
@@ -35,6 +35,15 @@ jobs:
           else
           echo "La cobertura es menor al 85%: $COVERAGE"
           fi
+    
+    - name: Verificar Cobertura y Generar PDF
+      run: mvn verify
+
+    - name: Guardar PDF como artefacto
+      uses: actions/upload-artifact@v2
+      with:
+           name: jacoco-report
+           path: target/pdf/jacoco-report.pdf
 
 
       # se agrega el mismo uses pero con distinto  java-version Para compatibilizar con sonarCloud (solo acepta java 17)
