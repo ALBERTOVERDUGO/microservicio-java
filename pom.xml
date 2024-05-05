@@ -74,6 +74,27 @@
                     </rules>
                 </configuration>
             </plugin>
+
+            <!-- Plugin para generar PDF del informe de cobertura -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pdf-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>generate-pdf</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>pdf</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/pdf</outputDirectory>
+                            <documentName>jacoco-breakage-report</documentName>
+                            <documentRoot>${project.build.directory}/site/jacoco</documentRoot>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
