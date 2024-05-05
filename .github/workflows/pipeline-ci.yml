@@ -38,7 +38,7 @@ jobs:
       run: |
           cd target/site/jacoco
           wkhtmltopdf index.html jacoco-report.pdf
-          working-directory: ${{ github.workspace }}
+      working-directory: ${{ github.workspace }}
 
     - name: Crear artefacto de Jacoco
       uses: actions/upload-artifact@v2
