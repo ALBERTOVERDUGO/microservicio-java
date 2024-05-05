@@ -34,6 +34,12 @@ jobs:
             mvn verify
           fi
 
+    - name: Convertir informe JaCoCo a PDF
+      run: |
+          cd target/site/jacoco
+          wkhtmltopdf index.html jacoco-report.pdf
+          working-directory: ${{ github.workspace }}
+
     - name: Crear artefacto de Jacoco
       uses: actions/upload-artifact@v2
       with:
