@@ -19,7 +19,11 @@ jobs:
     
     - name: Compilation Maven
       run: mvn package
-      
+
+      #pruebas unitarias
+    - name: Ejecucion test unitarios 
+      run: mvn package test
+
       # se agrega el mismo uses pero con distinto  java-version Para compatibilizar con sonarCloud (solo acepta java 17)
     - name: setup Java JDK
       uses: actions/setup-java@v4.2.1
