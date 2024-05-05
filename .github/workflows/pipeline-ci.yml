@@ -21,11 +21,8 @@ jobs:
       run: mvn package
 
       #pruebas unitarias
-    - name: Ejecucion test unitarios 
-      run: mvn package test
-
-    - name: Ejecucion test unitarios jacoco
-      run: mvn package jacoco:report
+    - name: Ejecucion test unitarios y generacion de informe de cobertura
+      run: mvn test jacoco:report
 
     - name: Verificar Cobertura con jacoco
       run: |
