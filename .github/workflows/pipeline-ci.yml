@@ -21,22 +21,21 @@ jobs:
       run: mvn package
       
       #pruebas unitarias
-    - name: Ejecucion test unitarios 
-      run: mvn package test
-
     - name: Ejecucion test unitarios jacoco
       run: mvn package jacoco:report
-
+      
     - name: Verificar Cobertura con jacoco
       run: |
-          mvn package
-          if [ $? -eq 0 ]; then
-          echo "La cobertura es mayor al 85%."
-          mvn verify
+          COVERAGE=$(sed -n 's/.*<line.*mi.*coverage.*="\([^"]*\)".*/\1/p' target/site/jacoco/index.html)
+          if (( $(echo "$COVERAGE > 0.85" | bc -l) )); then
+          echo "La cobertura es mayor al 85%: $COVERAGE"
+           mvn verify
           else
-          echo "La cobertura es menor al 85%."
+          echo "La cobertura es menor al 85%: $COVERAGE"
           mvn verify
           fi
+
+        
           
     - name: Crear artefacto de Jacoco
       uses: actions/upload-artifact@v2
