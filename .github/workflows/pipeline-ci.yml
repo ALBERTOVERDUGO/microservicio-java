@@ -36,16 +36,6 @@ jobs:
           echo "La cobertura es menor al 85%: $COVERAGE"
           fi
     
-    - name: Verificar Cobertura y Generar PDF
-      run: mvn verify
-
-    - name: Guardar PDF como artefacto
-      uses: actions/upload-artifact@v2
-      with:
-           name: jacoco-report
-           path: target/pdf/jacoco-report.pdf
-
-
       # se agrega el mismo uses pero con distinto  java-version Para compatibilizar con sonarCloud (solo acepta java 17)
     - name: setup Java JDK
       uses: actions/setup-java@v4.2.1
