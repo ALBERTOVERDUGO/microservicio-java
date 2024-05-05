@@ -73,28 +73,6 @@
 				    </rules>
 				</configuration>
 			</plugin>
-			
-			<!-- Plugin de generación de PDF -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pdf-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<id>jacoco-pdf</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>pdf</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/pdf</outputDirectory>
-							<documentName>jacoco-report</documentName>
-						        <documentRoot>${project.build.directory}/site/jacoco</documentRoot>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			
 		</plugins>
 	</build>
 
