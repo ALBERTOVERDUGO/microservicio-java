@@ -23,16 +23,11 @@ jobs:
     - name: Generar informe de cobertura con Jacoco
       run: mvn jacoco:report
 
-    - name: Verificar Cobertura con jacoco
-      run: |
-          mvn package
-          if [ $? -eq 0 ]; then
-          echo "La cobertura es mayor al 85%."
-          mvn verify
-          else
-          echo "La cobertura es menor al 85%."
-          mvn verify
-          fi
+    - name: Ejecutar pruebas y generar informe de cobertura
+      run: mvn clean verify
+
+    - name: Crear PDF del informe de cobertura
+      run: mvn pdf:pdf
 
     - name: Crear artefacto de Jacoco
       uses: actions/upload-artifact@v2
