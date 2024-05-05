@@ -89,6 +89,7 @@
 						<configuration>
 							<outputDirectory>${project.build.directory}/pdf</outputDirectory>
 							<documentName>jacoco-report</documentName>
+						        <documentRoot>${project.build.directory}/site/jacoco</documentRoot>
 						</configuration>
 					</execution>
 				</executions>
