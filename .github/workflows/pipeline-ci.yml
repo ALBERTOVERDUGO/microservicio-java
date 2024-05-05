@@ -20,9 +20,6 @@ jobs:
     - name: Compilation Maven
       run: mvn package
       
-    - name: Generar informe de cobertura con Jacoco
-      run: mvn jacoco:report
-
     - name: Ejecutar pruebas y generar informe de cobertura
       run: mvn clean verify
 
