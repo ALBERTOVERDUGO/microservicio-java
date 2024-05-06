@@ -73,3 +73,12 @@ jobs:
       run: | 
           docker push albertoverdugo/microservicio-java:latest
           
+  deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+
+      - name: Clonacion de codigo
+        run: echo "despliegue"
+        
