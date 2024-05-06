@@ -38,3 +38,11 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
+
+    - name: Analisis SonarCloud
+      run: |
+          mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar \
+          -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.organization=albertoverdugo \
+          -Dsonar.projectKey=ALBERTOVERDUGO_microservicio-java
